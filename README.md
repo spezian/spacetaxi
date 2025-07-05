@@ -1,5 +1,6 @@
 # just an ordinary space taxi simulator
 freaky taxi spiel. erstellt mit godot.
+Leon war hier 5.7.25
 
 # license
 Code ist unter der [EUPL-v1.2](https://github.com/spezian/spacetaxi/blob/main/LICENSE-EUPL) lizenziert.
