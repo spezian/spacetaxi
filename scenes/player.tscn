@@ -29,6 +29,7 @@ shape = SubResource("CircleShape2D_g2els")
 [node name="InputComponent" parent="." instance=ExtResource("2_g2els")]
 
 [node name="MovementComponent" parent="." instance=ExtResource("4_dqkch")]
+speed = 100.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_qlg0r")]
 maxHealth = 100.0

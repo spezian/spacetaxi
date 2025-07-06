@@ -1,3 +1,4 @@
+@tool
 class_name HealthComponent
 extends Node
 
@@ -9,10 +10,16 @@ extends Node
 		maxHealth = newMax
 		if (currentHealth >= maxHealth):
 			currentHealth = maxHealth
+		update_configuration_warnings()
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if maxHealth <= 0:
+		return ["Max health can't be negative or 0!"]
+	return []
 
 var hasHealthRemaining: bool:
 	get:
-		return is_equal_approx(currentHealth, 0)
+		return !is_equal_approx(currentHealth, 0)
 
 var currentHealth: float:
 	get:

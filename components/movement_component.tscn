@@ -4,4 +4,3 @@
 
 [node name="MovementComponent" type="Node"]
 script = ExtResource("1_3uaqq")
-speed = null
