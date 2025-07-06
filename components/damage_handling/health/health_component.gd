@@ -8,7 +8,7 @@ extends Node
 	set(newMax):
 		maxHealth = newMax
 		if (currentHealth >= maxHealth):
-			currentHealth = maxHealth # booty
+			currentHealth = maxHealth 
 
 var hasHealthRemaining: bool:
 	get:
