@@ -3,19 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://cc433ywxp3cj8" path="res://icon.svg" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://tpwwl6ybtsrn" path="res://scenes/player.gd" id="1_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://dbtnqwo8y26yy" path="res://components/input/input_component.tscn" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://5hajm62ou7lv" path="res://components/movement/movement_component.tscn" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://beiaihje2pnia" path="res://components/projectiles/linear_bullet.tscn" id="2_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://5hajm62ou7lv" path="res://components/velocity/velocity_component.tscn" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://b67jrqw4lodbm" path="res://components/damage_handling/health/health_component.tscn" id="5_qlg0r"]
-[ext_resource type="PackedScene" uid="uid://dpot5j5asq818" path="res://components/projectiles/bullet_component.tscn" id="7_smehm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 12.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "movement_component", "health_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "velocity_component", "health_component")]
 script = ExtResource("1_qhqgy")
 input_component = NodePath("InputComponent")
-movement_component = NodePath("MovementComponent")
+velocity_component = NodePath("VelocityComponent")
 health_component = NodePath("HealthComponent")
-bullet = ExtResource("7_smehm")
+bullet = ExtResource("2_tuyoq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -26,10 +26,10 @@ shape = SubResource("CircleShape2D_g2els")
 
 [node name="InputComponent" parent="." instance=ExtResource("2_g2els")]
 
-[node name="MovementComponent" parent="." instance=ExtResource("4_dqkch")]
-
 [node name="HealthComponent" parent="." instance=ExtResource("5_qlg0r")]
 maxHealth = 100.0
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_dqkch")]
 
 [node name="Weapon" type="Marker2D" parent="."]
 position = Vector2(12, 0)

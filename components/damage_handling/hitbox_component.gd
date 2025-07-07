@@ -1,6 +1,5 @@
-class_name HitBox
+class_name HitboxComponent
 extends Area2D
-@onready var shape: CollisionShape2D = $CollisionShape2D
 
 @export_subgroup("Settings")
 @export var damage: float
