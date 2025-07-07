@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://biucq2cietv2b"]
+
+[ext_resource type="Script" uid="uid://kqtmnqg70pa0" path="res://components/meteorite.gd" id="1_8p7v5"]
+[ext_resource type="PackedScene" uid="uid://f5wydewpjb6k" path="res://components/damage_handling/hitbox_component.tscn" id="2_ysyc7"]
+[ext_resource type="Texture2D" uid="uid://cc433ywxp3cj8" path="res://icon.svg" id="3_47lor"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8p7v5"]
+radius = 7.0
+
+[node name="Meteorite" type="Node"]
+script = ExtResource("1_8p7v5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8p7v5")
+
+[node name="HitBox" parent="Area2D" instance=ExtResource("2_ysyc7")]
+top_level = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(0.179688, 0.179688)
+texture = ExtResource("3_47lor")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Area2D"]
+
+[connection signal="screen_exited" from="Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

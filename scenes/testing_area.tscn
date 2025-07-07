@@ -5,4 +5,10 @@
 [node name="TestingArea" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_mb3qh")]
-position = Vector2(158, 75)
+position = Vector2(72, 42)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(320, 16)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(320, 165)
