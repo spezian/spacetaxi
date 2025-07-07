@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://biucq2cietv2b"]
+[gd_scene load_steps=5 format=3 uid="uid://k2nlp42crifx"]
 
-[ext_resource type="Script" uid="uid://kqtmnqg70pa0" path="res://components/meteorite.gd" id="1_8p7v5"]
+[ext_resource type="Script" path="res://components/meteorite.gd" id="1_8p7v5"]
 [ext_resource type="PackedScene" uid="uid://f5wydewpjb6k" path="res://components/damage_handling/hitbox_component.tscn" id="2_ysyc7"]
 [ext_resource type="Texture2D" uid="uid://cc433ywxp3cj8" path="res://icon.svg" id="3_47lor"]
 

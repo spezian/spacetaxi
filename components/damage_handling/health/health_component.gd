@@ -1,6 +1,8 @@
 class_name HealthComponent
 extends Node
 
+signal died
+
 @export_subgroup("Settings")
 @export var maxHealth: float:
 	get:
@@ -12,7 +14,7 @@ extends Node
 
 var hasHealthRemaining: bool:
 	get:
-		return is_equal_approx(currentHealth, 0)
+		return !is_equal_approx(currentHealth, 0)
 
 var currentHealth: float:
 	get:
@@ -21,6 +23,7 @@ var currentHealth: float:
 		currentHealth = clamp(newHealth, 0, maxHealth)
 		if (!isDead && !hasHealthRemaining):
 			isDead = true
+			died.emit()
 
 var isDead: bool = false
 
