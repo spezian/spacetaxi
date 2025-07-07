@@ -1,13 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuiagu4acte4p"]
+[gd_scene load_steps=10 format=3 uid="uid://cuiagu4acte4p"]
 
 [ext_resource type="Texture2D" uid="uid://cc433ywxp3cj8" path="res://icon.svg" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://tpwwl6ybtsrn" path="res://scenes/player.gd" id="1_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://dbtnqwo8y26yy" path="res://components/input/input_component.tscn" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://beiaihje2pnia" path="res://components/projectiles/linear_bullet.tscn" id="2_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://beiaihje2pnia" path="res://collections/projectiles/linear_bullet.tscn" id="2_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://5hajm62ou7lv" path="res://components/velocity/velocity_component.tscn" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://cadqwag8joofs" path="res://components/damage_handling/hurtbox_component.tscn" id="4_fjrip"]
 [ext_resource type="PackedScene" uid="uid://b67jrqw4lodbm" path="res://components/damage_handling/health/health_component.tscn" id="5_qlg0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
 radius = 12.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_component", "velocity_component", "health_component")]
@@ -23,6 +27,12 @@ texture = ExtResource("1_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g2els")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fjrip")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_smehm")
 
 [node name="InputComponent" parent="." instance=ExtResource("2_g2els")]
 

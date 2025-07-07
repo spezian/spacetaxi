@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://soy858nqy3x2"]
+
+[ext_resource type="PackedScene" uid="uid://cadqwag8joofs" path="res://components/damage_handling/hurtbox_component.tscn" id="1_rcdth"]
+[ext_resource type="Script" uid="uid://tn58btoscu7h" path="res://collections/enemies/dummy_enemy.gd" id="1_xy2tq"]
+[ext_resource type="PackedScene" uid="uid://f5wydewpjb6k" path="res://components/damage_handling/hitbox_component.tscn" id="2_k5vr6"]
+[ext_resource type="PackedScene" uid="uid://b67jrqw4lodbm" path="res://components/damage_handling/health/health_component.tscn" id="3_1t8dd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5vr6"]
+radius = 8.0
+
+[node name="DummyEnemy" type="Node2D" node_paths=PackedStringArray("health_component")]
+script = ExtResource("1_xy2tq")
+health_component = NodePath("HealthComponent")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("1_rcdth")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_k5vr6")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_k5vr6")]
+damage = 15.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_k5vr6")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_1t8dd")]
+maxHealth = 50.0
+
+[connection signal="died" from="HealthComponent" to="." method="_when_died"]
