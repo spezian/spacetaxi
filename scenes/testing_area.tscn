@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cql0igc6xknp3"]
+[gd_scene load_steps=3 format=3 uid="uid://cql0igc6xknp3"]
 
 [ext_resource type="PackedScene" uid="uid://cuiagu4acte4p" path="res://scenes/player.tscn" id="1_mb3qh"]
+[ext_resource type="PackedScene" uid="uid://soy858nqy3x2" path="res://collections/enemies/DummyEnemy.tscn" id="2_mu1h5"]
 
 [node name="TestingArea" type="Node2D"]
 
@@ -12,3 +13,6 @@ position = Vector2(320, 16)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
 position = Vector2(320, 165)
+
+[node name="DummyEnemy" parent="." instance=ExtResource("2_mu1h5")]
+position = Vector2(184, 101)
