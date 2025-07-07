@@ -1,20 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bit2fidrasw1q"]
+[gd_scene load_steps=6 format=3 uid="uid://cy55drbhkhl15"]
 
 [ext_resource type="Script" uid="uid://cfapniei1yxwr" path="res://rocket.gd" id="1_5gt1y"]
 [ext_resource type="PackedScene" uid="uid://f5wydewpjb6k" path="res://components/damage_handling/hitbox_component.tscn" id="1_fj03e"]
 [ext_resource type="PackedScene" uid="uid://5hajm62ou7lv" path="res://components/velocity/velocity_component.tscn" id="3_r2l15"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5gt1y"]
+radius = 12.1655
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r2l15"]
 radius = 54.0093
 
 [node name="Rocket" type="Node2D" node_paths=PackedStringArray("velocity_component")]
 script = ExtResource("1_5gt1y")
-SPEED = null
+SPEED = 50.0
 velocity_component = NodePath("VelocityComponent")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("1_fj03e")]
+damage = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_5gt1y")
@@ -25,6 +27,8 @@ shape = SubResource("CircleShape2D_5gt1y")
 shape = SubResource("CircleShape2D_r2l15")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_r2l15")]
-speed = 300.0
 
+[connection signal="area_entered" from="DetectingArea" to="." method="_on_detecting_area_area_entered"]
+[connection signal="area_exited" from="DetectingArea" to="." method="_on_detecting_area_area_exited"]
 [connection signal="body_entered" from="DetectingArea" to="." method="_on_detecting_area_body_entered"]
+[connection signal="body_exited" from="DetectingArea" to="." method="_on_detecting_area_body_exited"]
