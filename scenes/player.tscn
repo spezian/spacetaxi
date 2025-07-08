@@ -30,6 +30,7 @@ shape = SubResource("CircleShape2D_g2els")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_fjrip")]
 health_component = NodePath("../HealthComponent")
+is_enemy = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_smehm")

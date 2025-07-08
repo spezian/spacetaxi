@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://beiaihje2pnia"]
+[gd_scene load_steps=6 format=3 uid="uid://beiaihje2pnia"]
 
 [ext_resource type="Script" uid="uid://bcg54qxuy152o" path="res://collections/projectiles/linear_bullet.gd" id="1_hvl6f"]
 [ext_resource type="PackedScene" uid="uid://f5wydewpjb6k" path="res://components/damage_handling/hitbox_component.tscn" id="2_yth8w"]
 [ext_resource type="PackedScene" uid="uid://5hajm62ou7lv" path="res://components/velocity/velocity_component.tscn" id="3_yth8w"]
+[ext_resource type="Texture2D" uid="uid://2bthmbesi8pf" path="res://art/linear_bullet.png" id="4_mtmx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yth8w"]
-size = Vector2(20, 4)
+size = Vector2(13, 3)
 
 [node name="LinearBullet" type="Node2D" node_paths=PackedStringArray("velocity_component")]
 script = ExtResource("1_hvl6f")
@@ -13,11 +14,17 @@ velocity_component = NodePath("VelocityComponent")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("2_yth8w")]
 damage = 25.0
+is_enemy = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_yth8w")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_yth8w")]
 speed = 750.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("4_mtmx1")
 
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_area_entered"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cuiagu4acte4p" path="res://scenes/player.tscn" id="1_mb3qh"]
 [ext_resource type="PackedScene" uid="uid://soy858nqy3x2" path="res://collections/enemies/DummyEnemy.tscn" id="2_mu1h5"]
-[ext_resource type="PackedScene" uid="uid://cy55drbhkhl15" path="res://rocket.tscn" id="3_dkpym"]
+[ext_resource type="PackedScene" uid="uid://cy55drbhkhl15" path="res://collections/projectiles/rocket.tscn" id="3_dkpym"]
 
 [node name="TestingArea" type="Node2D"]
 
