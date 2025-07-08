@@ -28,7 +28,13 @@ shape = SubResource("CircleShape2D_r2l15")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_r2l15")]
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="DetectingArea" to="." method="_on_detecting_area_area_entered"]
 [connection signal="area_exited" from="DetectingArea" to="." method="_on_detecting_area_area_exited"]
 [connection signal="body_entered" from="DetectingArea" to="." method="_on_detecting_area_body_entered"]
 [connection signal="body_exited" from="DetectingArea" to="." method="_on_detecting_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

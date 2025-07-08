@@ -42,3 +42,6 @@ func _on_detecting_area_body_exited(body: Node2D) -> void:
 	#if area is HurtboxComponent:s
 		#follow_player = false
 		#character = null
+
+func _on_timer_timeout() -> void:
+	queue_free()
