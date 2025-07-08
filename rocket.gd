@@ -14,34 +14,21 @@ func _physics_process(delta: float) -> void:
 		position += velocity_component.velocity * delta
 	if follow_player:
 		position += (character.position - position)/ SPEED
-	print(position)
 	
 func _on_detecting_area_body_entered(body: Node2D) -> void:
 	if body is Player:
-		print(body.position)
-		print("entered")
 		character = body
 		follow_player = true
 		
-
-
 func _on_detecting_area_body_exited(body: Node2D) -> void:
 	if body is Player:
 		print(body.position)
-		print("exited")
 		character = null
 		follow_player = false
-		
-
-#func _on_detecting_area_area_entered(area: Area2D) -> void:
-	#if area is HurtboxComponent:
-		#follow_player = true
-		#character = area
-#
-#func _on_detecting_area_area_exited(area: Area2D) -> void:
-	#if area is HurtboxComponent:s
-		#follow_player = false
-		#character = null
 
 func _on_timer_timeout() -> void:
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

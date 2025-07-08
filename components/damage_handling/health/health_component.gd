@@ -32,3 +32,4 @@ func initialise() -> void:
 
 func damage(amount: float) -> void:
 	currentHealth -= amount
+	print(currentHealth)
