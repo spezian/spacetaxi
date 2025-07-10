@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy55drbhkhl15"]
+
+[ext_resource type="Script" uid="uid://cfapniei1yxwr" path="res://collections/projectiles/rocket.gd" id="1_5gt1y"]
+[ext_resource type="PackedScene" uid="uid://f5wydewpjb6k" path="res://components/damage_handling/hitbox_component.tscn" id="1_fj03e"]
+[ext_resource type="PackedScene" uid="uid://5hajm62ou7lv" path="res://components/velocity/velocity_component.tscn" id="3_r2l15"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5gt1y"]
+radius = 12.1655
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r2l15"]
+radius = 54.0093
+
+[node name="Rocket" type="Node2D" node_paths=PackedStringArray("velocity_component")]
+script = ExtResource("1_5gt1y")
+SPEED = 50.0
+velocity_component = NodePath("VelocityComponent")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("1_fj03e")]
+damage = 50.0
+one_time_hitbox = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_5gt1y")
+
+[node name="DetectingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectingArea"]
+shape = SubResource("CircleShape2D_r2l15")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_r2l15")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="DetectingArea" to="." method="_on_detecting_area_area_entered"]
+[connection signal="area_exited" from="DetectingArea" to="." method="_on_detecting_area_area_exited"]
+[connection signal="body_entered" from="DetectingArea" to="." method="_on_detecting_area_body_entered"]
+[connection signal="body_exited" from="DetectingArea" to="." method="_on_detecting_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

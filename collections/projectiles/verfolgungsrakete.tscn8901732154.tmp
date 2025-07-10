@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv6qw3tx054nl"]
+
+[ext_resource type="PackedScene" uid="uid://f5wydewpjb6k" path="res://components/damage_handling/hitbox_component.tscn" id="1_ped3u"]
+[ext_resource type="Script" uid="uid://b51k5pdfho77g" path="res://collections/projectiles/verfolgungsrakete.gd" id="1_ybm4j"]
+[ext_resource type="PackedScene" uid="uid://5hajm62ou7lv" path="res://components/velocity/velocity_component.tscn" id="2_ybm4j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdlwi"]
+radius = 12.1655
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0abst"]
+radius = 54.0093
+
+[node name="Verfolgungsrakete" type="CharacterBody2D" node_paths=PackedStringArray("velocity_component")]
+script = ExtResource("1_ybm4j")
+velocity_component = NodePath("VelocityComponent")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("1_ped3u")]
+damage = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_tdlwi")
+
+[node name="DetectingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectingArea"]
+shape = SubResource("CircleShape2D_0abst")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_ybm4j")]
+speed = 300.0
+
+[connection signal="body_entered" from="DetectingArea" to="." method="_on_detecting_area_body_entered"]
+[connection signal="body_exited" from="DetectingArea" to="." method="_on_detecting_area_body_exited"]

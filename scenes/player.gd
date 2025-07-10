@@ -21,3 +21,9 @@ func _process(delta: float) -> void:
 		var bullet = bullet.instantiate()
 		owner.add_child(bullet)
 		bullet.transform = weapon.global_transform
+
+
+func _on_health_component_died() -> void:
+	queue_free()
+	print("you died")
+	get_tree().reload_current_scene()
