@@ -13,7 +13,11 @@ func _physics_process(delta: float) -> void:
 	if !follow_player:
 		position += velocity_component.velocity * delta
 	if follow_player:
-		position += (character.position - position)/ SPEED
+		var direction = (character.position - position)
+		position += direction / SPEED
+		rotation = direction.angle()
+	
+	
 	
 func _on_detecting_area_body_entered(body: Node2D) -> void:
 	if body is Player:

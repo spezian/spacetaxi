@@ -13,3 +13,4 @@ func _on_area_entered(body: Node) -> void:
 	elif (body is HitboxComponent and !body.is_enemy):
 		var damage = body.get_damage()
 		health_component.damage(damage)
+		print("Spieler macht Schaden am Gegner")
