@@ -14,6 +14,7 @@ health_component = NodePath("HealthComponent")
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("1_rcdth")]
 health_component = NodePath("../HealthComponent")
+is_enemy = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_k5vr6")
